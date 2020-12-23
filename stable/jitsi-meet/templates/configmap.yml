@@ -56,7 +56,7 @@ data:
     CONNECTION_INDICATOR_DISABLED: false,
 
     DEFAULT_BACKGROUND: {{ .Values.jitsi.config.DEFAULT_BACKGROUND }},
-    DEFAULT_LOCAL_DISPLAY_NAME: {{ .Values.jitsi.config.DEFAULT_LOCAL_DISPLAY_NAME }},
+    DEFAULT_LOCAL_DISPLAY_NAME: '{{ .Values.jitsi.config.DEFAULT_LOCAL_DISPLAY_NAME }}',
     DEFAULT_LOGO_URL: 'images/watermark.png',
     DEFAULT_REMOTE_DISPLAY_NAME: {{ .Values.jitsi.config.DEFAULT_REMOTE_DISPLAY_NAME }},
     DEFAULT_WELCOME_PAGE_LOGO_URL: 'images/watermark.png',
