@@ -72,6 +72,6 @@ spec:
               mountPath: /prosody-plugins-custom
       volumes:
         - name: prosody-config
-          emptyDir: {}
+          emptyDir: { }
         - name: prosody-custom-plugins
-          emptyDir: {}
+          emptyDir: { }

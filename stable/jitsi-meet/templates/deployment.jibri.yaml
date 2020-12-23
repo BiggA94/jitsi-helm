@@ -2,26 +2,26 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: prosody
+  name: jibri
   namespace: {{ .Release.Namespace }}
   labels:
     {{- include "jitsi-meet.labels" . | nindent 4 }}
     app: jitsi-meet
-    component: prosody
+    component: jibri
 spec:
   replicas: 1
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      component: prosody
+      component: jibri
   template:
     metadata:
       labels:
-        component: prosody
+        component: jibri
     spec:
       containers:
-        - name: prosody
+        - name: jibri
           image: jitsi/jibri:latest
           imagePullPolicy: Always
           ports:
