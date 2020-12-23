@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: jicofo
-  namespace: jitsi-meet
+  namespace: {{ .Release.Namespace }}
   labels:
     {{- include "jitsi-meet.labels" . | nindent 4 }}
     app: jitsi-meet
