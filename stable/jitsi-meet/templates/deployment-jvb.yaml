@@ -51,6 +51,8 @@ spec:
               value: focus
             - name: JVB_TCP_HARVESTER_DISABLED
               value: "false"
+            - name: XMPP_BOSH_URL_BASE
+              value: http://prosody:5280
             - name: JVB_AUTH_USER
               value: jvb
             - name: JVB_PORT

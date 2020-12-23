@@ -47,7 +47,9 @@ spec:
             - name: JVB_BREWERY_MUC
               value: jvbbrewery
             - name: XMPP_AUTH_DOMAIN
-              value: auth.meet.jitsi
+              value: auth.meet.jitsiv
+            - name: XMPP_BOSH_URL_BASE
+              value: http://prosody:5280
             - name: XMPP_RECORDER_DOMAIN
               value: recorder.meet.jitsi
             - name: XMPP_SERVER

@@ -32,6 +32,8 @@ spec:
               value: auth.meet.jitsi
             - name: XMPP_INTERNAL_MUC_DOMAIN
               value: internal-muc.meet.jitsi
+            - name: XMPP_BOSH_URL_BASE
+              value: http://prosody:5280
             - name: JICOFO_COMPONENT_SECRET
               valueFrom:
                 secretKeyRef:
