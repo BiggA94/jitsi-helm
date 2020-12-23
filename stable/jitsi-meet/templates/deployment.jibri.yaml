@@ -1,0 +1,91 @@
+### XMPP server
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prosody
+  namespace: jitsi-meet
+  labels:
+    {{- include "jitsi-meet.labels" . | nindent 4 }}
+    app: jitsi-meet
+    component: prosody
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      component: prosody
+  template:
+    metadata:
+      labels:
+        component: prosody
+    spec:
+      containers:
+        - name: prosody
+          image: jitsi/jibri:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 5222
+              protocol: TCP
+            - containerPort: 5269
+              protocol: TCP
+            - containerPort: 5280
+              protocol: TCP
+            - containerPort: 5347
+              protocol: TCP
+          env:
+            - name: DISPLAY
+              value: ":0"
+            - name: JIBRI_BREWERY_MUC
+              value: jibribrewery
+            - name: JIBRI_PENDING_TIMEOUT
+              value: "90"
+            - name: XMPP_DOMAIN
+              value: meet.jitsi
+            - name: JIGASI_BREWERY_MUC
+              value: jigasibrewery
+            - name: JVB_BREWERY_MUC
+              value: jvbbrewery
+            - name: XMPP_AUTH_DOMAIN
+              value: auth.meet.jitsi
+            - name: XMPP_RECORDER_DOMAIN
+              value: recorder.meet.jitsi
+            - name: XMPP_SERVER
+              value: prosody
+            - name: XMPP_MUC_DOMAIN
+              value: muc.meet.jitsi
+            - name: XMPP_INTERNAL_MUC_DOMAIN
+              value: internal-muc.meet.jitsi
+            - name: JICOFO_COMPONENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: jitsi-config
+                  key: JICOFO_COMPONENT_SECRET
+            - name: JVB_AUTH_USER
+              value: jvb
+            - name: JVB_AUTH_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: jitsi-config
+                  key: JVB_AUTH_PASSWORD
+            - name: JICOFO_AUTH_USER
+              value: focus
+            - name: JICOFO_AUTH_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: jitsi-config
+                  key: JICOFO_AUTH_PASSWORD
+            - name: TZ
+              value: {{ .Values.jitsi.common.timezone }}
+            - name: JVB_TCP_HARVESTER_DISABLED
+              value: "false"
+          volumeMounts:
+            - name: jibri-config
+              mountPath: /config
+            - name: jibri-custom-plugins
+              mountPath: /jibri-plugins-custom
+      volumes:
+        - name: jibri-config
+          emptyDir: {}
+        - name: jibri-custom-plugins
+          emptyDir: {}

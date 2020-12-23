@@ -11,7 +11,7 @@ jitsi:
     SHOW_JITSI_WATERMARK: true
   common:
     timezone: "Europe/Berlin"
-    public_url: jitsi.weidt.dev
+    public_url: https://jitsi.weidt.dev
   ingress:
     enabled: true
     annotations: { }
