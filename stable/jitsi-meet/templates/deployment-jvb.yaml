@@ -39,6 +39,7 @@ spec:
                   key: DOCKER_HOST_ADDRESS
             - name: JVB_STUN_SERVERS
               value: stun.l.google.com:19302,stun1.l.google.com:19302,stun2.l.google.com:19302
+            {{- include "jitsi-meet.common.env" . | nindent 12 }}
           volumeMounts:
             - name: jvb-config
               mountPath: /config
