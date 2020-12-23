@@ -36,51 +36,23 @@ spec:
           env:
             - name: DISPLAY
               value: ":0"
-            - name: JIBRI_BREWERY_MUC
-              value: jibribrewery
             - name: JIBRI_PENDING_TIMEOUT
               value: "90"
-            - name: XMPP_DOMAIN
-              value: meet.jitsi
-            - name: JIGASI_BREWERY_MUC
-              value: jigasibrewery
-            - name: JVB_BREWERY_MUC
-              value: jvbbrewery
-            - name: XMPP_AUTH_DOMAIN
-              value: auth.meet.jitsiv
-            - name: XMPP_BOSH_URL_BASE
-              value: http://prosody:5280
-            - name: XMPP_RECORDER_DOMAIN
-              value: recorder.meet.jitsi
-            - name: XMPP_SERVER
-              value: prosody
-            - name: XMPP_MUC_DOMAIN
-              value: muc.meet.jitsi
-            - name: XMPP_INTERNAL_MUC_DOMAIN
-              value: internal-muc.meet.jitsi
-            - name: JICOFO_COMPONENT_SECRET
+            - name: JIBRI_RECORDER_USER
+              value: recorder
+            - name: JIBRI_RECORDER_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: jitsi-config
-                  key: JICOFO_COMPONENT_SECRET
-            - name: JVB_AUTH_USER
-              value: jvb
-            - name: JVB_AUTH_PASSWORD
+                  key: JIBRI_RECORDER_PASSWORD
+            - name: JIBRI_XMPP_USER
+              value: jibri
+            - name: JIBRI_XMPP_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: jitsi-config
-                  key: JVB_AUTH_PASSWORD
-            - name: JICOFO_AUTH_USER
-              value: focus
-            - name: JICOFO_AUTH_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: jitsi-config
-                  key: JICOFO_AUTH_PASSWORD
-            - name: TZ
-              value: {{ .Values.jitsi.common.timezone }}
-            - name: JVB_TCP_HARVESTER_DISABLED
-              value: "false"
+                  key: JIBRI_XMPP_PASSWORD
+            {{- include "jitsi-meet.common.env" . | nindent 12 }}
           volumeMounts:
             - name: jibri-config
               mountPath: /config

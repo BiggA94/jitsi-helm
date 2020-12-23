@@ -1,7 +1,7 @@
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "jitsi-meet.common.env" -}}
+  {{- define "jitsi-meet.common.env" -}}
 - name: XMPP_DOMAIN
   value: meet.jitsi
 - name: XMPP_AUTH_DOMAIN
@@ -10,6 +10,12 @@ Create the name of the service account to use
   value: muc.meet.jitsi
 - name: XMPP_INTERNAL_MUC_DOMAIN
   value: internal-muc.meet.jitsi
+- name: XMPP_SERVER
+  value: prosody
+- name: XMPP_BOSH_URL_BASE
+  value: http://prosody:5280
+- name: XMPP_RECORDER_DOMAIN
+  value: recorder.meet.jitsi
 - name: JICOFO_COMPONENT_SECRET
   valueFrom:
     secretKeyRef:
@@ -33,4 +39,14 @@ Create the name of the service account to use
   value: {{ .Values.jitsi.common.timezone }}
 - name: JVB_TCP_HARVESTER_DISABLED
   value: "false"
+- name: JVB_BREWERY_MUC
+  value: jvbbrewery
+- name: JIGASI_BREWERY_MUC
+  value: jigasibrewery
+- name: JIBRI_BREWERY_MUC
+  value: jibribrewery
+- name: JVB_PORT
+  value: "10000"
+- name: JVB_TCP_PORT
+  value: "4443"
 {{- end }}

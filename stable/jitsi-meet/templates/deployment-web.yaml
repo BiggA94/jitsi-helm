@@ -34,45 +34,10 @@ spec:
                 secretKeyRef:
                   name: jitsi-config
                   key: PUBLIC_URL
-            - name: XMPP_SERVER
-              value: prosody
-            - name: JICOFO_AUTH_USER
-              value: focus
-            - name: XMPP_DOMAIN
-              value: meet.jitsi
-            - name: XMPP_AUTH_DOMAIN
-              value: auth.meet.jitsi
-            - name: XMPP_INTERNAL_MUC_DOMAIN
-              value: internal-muc.meet.jitsi
-            - name: XMPP_BOSH_URL_BASE
-              value: http://prosody:5280
-            - name: XMPP_MUC_DOMAIN
-              value: muc.meet.jitsi
-            - name: TZ
-              value: {{ .Values.jitsi.common.timezone }}
-            - name: JVB_TCP_HARVESTER_DISABLED
-              value: "false"
-            - name: JIBRI_BREWERY_MUC
-              value: jibribrewery
-            - name: JIBRI_PENDING_TIMEOUT
-              value: '90'
-            - name: JIBRI_XMPP_USER
-              value: jibri
-            - name: JIBRI_XMPP_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: jitsi-config
-                  key: JIBRI_XMPP_PASSWORD
-            - name: JIBRI_RECORDER_USER
-              value: recorder
-            - name: JIBRI_RECORDER_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: jitsi-config
-                  key: JIBRI_RECORDER_PASSWORD
             ### OPTIONAL: Un-comment the next 2 lines to use Etherpad integration (for document sharing) and apply 'jitsi-meet-etherpad.yaml'
             # - name: ETHERPAD_URL_BASE
             #   value: http://etherpad:9001
+          {{- include "jitsi-meet.common.env" . | nindent 12 }}
           volumeMounts:
             - name: jitsi-config
               mountPath: /config
