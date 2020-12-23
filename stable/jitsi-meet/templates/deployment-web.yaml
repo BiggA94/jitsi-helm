@@ -89,10 +89,12 @@ spec:
         - name: jitsi-config
           emptyDir: {}
         ### OPTIONAL: Un-comment the next 3 lines to use the configMap
-        # - name: jitsi-interface-config
-        #   configMap:
-        #     name: jitsi-interface-config
-        # - name: letsencrypt-config
+        {{- if .Values.jitsi.config.enabled }}
+        - name: jitsi-interface-config
+          configMap:
+            name: jitsi-interface-config
+        {{- end }}
+        #- name: letsencrypt-config
         #   emptyDir: {}
         - name: jitsi-transcripts
           emptyDir: {}
