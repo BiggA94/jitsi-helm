@@ -58,8 +58,13 @@ spec:
               mountPath: /config
             - name: jibri-custom-plugins
               mountPath: /jibri-plugins-custom
+            - name: dev-snd
+              mountPath: /dev/snd
       volumes:
         - name: jibri-config
           emptyDir: {}
         - name: jibri-custom-plugins
           emptyDir: {}
+        - name: dev-snd
+          hostPath:
+            path: /dev/snd
