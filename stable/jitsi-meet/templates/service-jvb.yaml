@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: jvb
+  labels:
+    {{- include "jitsi-meet.labels" . | nindent 4 }}
+    app: jitsi-meet
+    component: jvb-service
+spec:
+  ports:
+    - name: 4443-tcp
+      port: 4443
+      targetPort: 4443
+  selector:
+    component: jvb

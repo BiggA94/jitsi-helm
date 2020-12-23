@@ -1,0 +1,36 @@
+{{- if .Values.jitsi.ingress.enabled -}}
+  {{- $fullName := include "jitsi-meet.fullname" . -}}
+  {{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
+apiVersion: networking.k8s.io/v1beta1
+  {{- else -}}
+apiVersion: extensions/v1beta1
+  {{- end }}
+kind: Ingress
+metadata:
+  name: {{ $fullName }}
+  labels:
+  {{- include "jitsi-meet.labels" . | nindent 4 }}
+  {{- with .Values.jitsi.ingress.annotations }}
+  annotations:
+  {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  {{- if .Values.jitsi.ingress.tls }}
+  tls:
+    {{- range .Values.jitsi.ingress.tls }}
+    - hosts:
+        {{- range .hosts }}
+        - {{ . | quote }}
+      {{- end }}
+      secretName: {{ .secretName }}
+  {{- end }}
+  {{- end }}
+  rules:
+    - host: {{ .Values.jitsi.ingress.host | quote }}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: web
+              servicePort: http
+  {{- end }}

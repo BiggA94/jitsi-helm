@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jicofo
+  namespace: jitsi-meet
+  labels:
+    {{- include "jitsi-meet.labels" . | nindent 4 }}
+    app: jitsi-meet
+    component: jicofo
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      component: jicofo
+  template:
+    metadata:
+      labels:
+        component: jicofo
+    spec:
+      containers:
+        - name: jicofo
+          image: jitsi/jicofo:latest
+          imagePullPolicy: Always
+          env:
+            - name: XMPP_SERVER
+              value: prosody
+            - name: XMPP_DOMAIN
+              value: meet.jitsi
+            - name: XMPP_AUTH_DOMAIN
+              value: auth.meet.jitsi
+            - name: XMPP_INTERNAL_MUC_DOMAIN
+              value: internal-muc.meet.jitsi
+            - name: JICOFO_COMPONENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: jitsi-config
+                  key: JICOFO_COMPONENT_SECRET
+            - name: JICOFO_AUTH_USER
+              value: focus
+            - name: JICOFO_AUTH_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: jitsi-config
+                  key: JICOFO_AUTH_PASSWORD
+            - name: TZ
+              value: {{ .Values.jitsi.common.timezone }}
+            - name: JVB_BREWERY_MUC
+              value: jvbbrewery
+            - name: JIGASI_BREWERY_MUC
+              value: jigasibrewery
+            - name: JIBRI_BREWERY_MUC
+              value: jibribrewery
+            - name: JIBRI_PENDING_TIMEOUT
+              value: '90'
+          volumeMounts:
+            - name: jicofo-config
+              mountPath: /config
+      volumes:
+        - name: jicofo-config
+          emptyDir: {}

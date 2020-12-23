@@ -1,0 +1,7 @@
+jitsi:
+  config:
+    enabled: true
+    DEFAULT_BACKGROUND: "'#009933'"
+    DEFAULT_REMOTE_DISPLAY_NAME: 'Fellow Jitster'
+    DEFAULT_LOCAL_DISPLAY_NAME: 'me'
+    SHOW_JITSI_WATERMARK: false
