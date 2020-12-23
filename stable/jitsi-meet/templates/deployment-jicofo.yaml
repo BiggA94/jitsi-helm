@@ -26,11 +26,19 @@ spec:
           env:
             - name: XMPP_SERVER
               value: prosody
+            - name: XMPP_DOMAIN
+              value: meet.jitsi
+            - name: XMPP_AUTH_DOMAIN
+              value: auth.meet.jitsi
+            - name: XMPP_INTERNAL_MUC_DOMAIN
+              value: internal-muc.meet.jitsi
             - name: JICOFO_COMPONENT_SECRET
               valueFrom:
                 secretKeyRef:
                   name: jitsi-config
                   key: JICOFO_COMPONENT_SECRET
+            - name: JICOFO_AUTH_USER
+              value: focus
             - name: JICOFO_AUTH_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -38,6 +46,12 @@ spec:
                   key: JICOFO_AUTH_PASSWORD
             - name: TZ
               value: {{ .Values.jitsi.common.timezone }}
+            - name: JVB_BREWERY_MUC
+              value: jvbbrewery
+            - name: JIGASI_BREWERY_MUC
+              value: jigasibrewery
+            - name: JIBRI_BREWERY_MUC
+              value: jibribrewery
             - name: JIBRI_PENDING_TIMEOUT
               value: '90'
           volumeMounts:
