@@ -92,7 +92,7 @@ Create the name of the service account to use
 - name: JIBRI_XMPP_USER
   value: jibri
 - name: ENABLE_RECORDING
-  value: 1
+  value: "true"
 # Exposed HTTP port
 - name: HTTP_PORT
   value: 8000
@@ -100,6 +100,6 @@ Create the name of the service account to use
 - name: HTTPS_PORT
   value: 8443
 - name: DISABLE_HTTPS
-  value: 1
+  value: "true"
 
   {{- end }}
