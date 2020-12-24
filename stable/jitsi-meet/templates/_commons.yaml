@@ -2,6 +2,16 @@
 Create the name of the service account to use
 */}}
   {{- define "jitsi-meet.common.env" -}}
+- name: PUBLIC_URL
+  valueFrom:
+    secretKeyRef:
+      name: jitsi-config
+      key: PUBLIC_URL
+- name: DOCKER_HOST_ADDRESS
+  valueFrom:
+    secretKeyRef:
+      name: jitsi-config
+      key: DOCKER_HOST_ADDRESS
 - name: XMPP_DOMAIN
   value: meet.jitsi
 - name: XMPP_AUTH_DOMAIN
@@ -41,12 +51,28 @@ Create the name of the service account to use
   value: "false"
 - name: JVB_BREWERY_MUC
   value: jvbbrewery
+- name: JVB_STUN_SERVERS
+  value: stun.l.google.com:19302,stun1.l.google.com:19302,stun2.l.google.com:19302
 - name: JIGASI_BREWERY_MUC
   value: jigasibrewery
 - name: JIBRI_BREWERY_MUC
   value: jibribrewery
+- name: JIBRI_RECORDER_USER
+  value: recorder
+- name: JIBRI_RECORDER_PASSWORD
+  valueFrom:
+    secretKeyRef:
+      name: jitsi-config
+      key: JIBRI_RECORDER_PASSWORD
+- name: JIBRI_XMPP_USER
+  value: jibri
+- name: JIBRI_XMPP_PASSWORD
+  valueFrom:
+    secretKeyRef:
+      name: jitsi-config
+      key: JIBRI_XMPP_PASSWORD
 - name: JVB_PORT
   value: "10000"
 - name: JVB_TCP_PORT
   value: "4443"
-{{- end }}
+  {{- end }}
