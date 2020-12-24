@@ -74,7 +74,7 @@ Create the name of the service account to use
 - name: JICOFO_AUTH_USER
   value: focus
 - name: JICOFO_ENABLE_HEALTH_CHECKS
-  value: true
+  value: "true"
 - name: JIGASI_BREWERY_MUC
   value: jigasibrewery
 - name: JIBRI_BREWERY_MUC
