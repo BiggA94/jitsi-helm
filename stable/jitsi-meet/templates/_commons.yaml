@@ -12,67 +12,94 @@ Create the name of the service account to use
     secretKeyRef:
       name: jitsi-config
       key: DOCKER_HOST_ADDRESS
+- name: JICOFO_COMPONENT_SECRET
+  valueFrom:
+    secretKeyRef:
+      name: jitsi-config
+      key: JICOFO_COMPONENT_SECRET
+- name: JVB_AUTH_PASSWORD
+  valueFrom:
+    secretKeyRef:
+      name: jitsi-config
+      key: JVB_AUTH_PASSWORD
+- name: JICOFO_AUTH_PASSWORD
+  valueFrom:
+    secretKeyRef:
+      name: jitsi-config
+      key: JICOFO_AUTH_PASSWORD
+- name: JIBRI_RECORDER_PASSWORD
+  valueFrom:
+    secretKeyRef:
+      name: jitsi-config
+      key: JIBRI_RECORDER_PASSWORD
+- name: JIBRI_XMPP_PASSWORD
+  valueFrom:
+    secretKeyRef:
+      name: jitsi-config
+      key: JIBRI_XMPP_PASSWORD
 - name: XMPP_DOMAIN
   value: meet.jitsi
+- name: XMPP_SERVER
+  value: prosody
+- name: XMPP_BOSH_URL_BASE
+  value: http://prosody:5280
 - name: XMPP_AUTH_DOMAIN
   value: auth.meet.jitsi
 - name: XMPP_MUC_DOMAIN
   value: muc.meet.jitsi
 - name: XMPP_INTERNAL_MUC_DOMAIN
   value: internal-muc.meet.jitsi
-- name: XMPP_SERVER
-  value: prosody
-- name: XMPP_BOSH_URL_BASE
-  value: http://prosody:5280
+- name: XMPP_GUEST_DOMAIN
+  value: guest.meet.jitsi
 - name: XMPP_RECORDER_DOMAIN
   value: recorder.meet.jitsi
-- name: JICOFO_COMPONENT_SECRET
-  valueFrom:
-    secretKeyRef:
-      name: jitsi-config
-      key: JICOFO_COMPONENT_SECRET
 - name: JVB_AUTH_USER
   value: jvb
-- name: JVB_AUTH_PASSWORD
-  valueFrom:
-    secretKeyRef:
-      name: jitsi-config
-      key: JVB_AUTH_PASSWORD
-- name: JICOFO_AUTH_USER
-  value: focus
-- name: JICOFO_AUTH_PASSWORD
-  valueFrom:
-    secretKeyRef:
-      name: jitsi-config
-      key: JICOFO_AUTH_PASSWORD
 - name: TZ
   value: {{ .Values.jitsi.common.timezone }}
 - name: JVB_TCP_HARVESTER_DISABLED
   value: "false"
 - name: JVB_BREWERY_MUC
   value: jvbbrewery
+- name: JVB_PORT
+  value: "10000"
+- name: JVB_TCP_PORT
+  value: "4443"
+- name: JVB_TCP_MAPPED_PORT
+  value: "4443"
 - name: JVB_STUN_SERVERS
-  value: stun.l.google.com:19302,stun1.l.google.com:19302,stun2.l.google.com:19302
+  value: meet-jit-si-turnrelay.jitsi.net:443,stun.l.google.com:19302,stun1.l.google.com:19302,stun2.l.google.com:19302
+- name: JVB_ENABLE_APIS
+  value: rest
+- name: JICOFO_AUTH_USER
+  value: focus
+- name: JICOFO_ENABLE_HEALTH_CHECKS
+  value: true
 - name: JIGASI_BREWERY_MUC
   value: jigasibrewery
 - name: JIBRI_BREWERY_MUC
   value: jibribrewery
 - name: JIBRI_RECORDER_USER
   value: recorder
-- name: JIBRI_RECORDER_PASSWORD
-  valueFrom:
-    secretKeyRef:
-      name: jitsi-config
-      key: JIBRI_RECORDER_PASSWORD
+- name: JIBRI_LOGS_DIR
+  value: /config/logs
+- name: JIBRI_RECORDING_DIR
+  value: /config/recordings
+- name: JIBRI_FINALIZE_RECORDING_SCRIPT_PATH
+  value: /config/finalize.sh
+- name: JIBRI_STRIP_DOMAIN_JID
+  value: muc
 - name: JIBRI_XMPP_USER
   value: jibri
-- name: JIBRI_XMPP_PASSWORD
-  valueFrom:
-    secretKeyRef:
-      name: jitsi-config
-      key: JIBRI_XMPP_PASSWORD
-- name: JVB_PORT
-  value: "10000"
-- name: JVB_TCP_PORT
-  value: "4443"
+- name: ENABLE_RECORDING
+  value: 1
+# Exposed HTTP port
+- name: HTTP_PORT
+  value: 8000
+# Exposed HTTPS port
+- name: HTTPS_PORT
+  value: 8443
+- name: DISABLE_HTTPS
+  value: 1
+
   {{- end }}
