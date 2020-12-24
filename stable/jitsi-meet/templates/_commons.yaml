@@ -95,10 +95,10 @@ Create the name of the service account to use
   value: "true"
 # Exposed HTTP port
 - name: HTTP_PORT
-  value: 8000
+  value: "8000"
 # Exposed HTTPS port
 - name: HTTPS_PORT
-  value: 8443
+  value: "8443"
 - name: DISABLE_HTTPS
   value: "true"
 
