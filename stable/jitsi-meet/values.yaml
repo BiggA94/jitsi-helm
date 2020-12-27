@@ -8,10 +8,10 @@ jitsi:
     DEFAULT_BACKGROUND: "'#474747'"
     DEFAULT_REMOTE_DISPLAY_NAME: Fellow Jitster
     DEFAULT_LOCAL_DISPLAY_NAME: me
-    SHOW_JITSI_WATERMARK: true
-    SHOW_JITSI_WATERMARK_GUEST: true
-    RESOLUTION: "'1920'"
-    RESOLUTION_WIDTH: "'1080'"
+    SHOW_JITSI_WATERMARK: "false"
+    SHOW_JITSI_WATERMARK_GUEST: "false"
+    RESOLUTION: "'1280'"
+    RESOLUTION_WIDTH: "'720'"
   common:
     timezone: "Europe/Berlin"
     public_url: https://jitsi.weidt.dev
