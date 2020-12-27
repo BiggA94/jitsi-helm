@@ -47,7 +47,7 @@ spec:
               value: ":0"
             - name: JIBRI_PENDING_TIMEOUT
               value: "90"
-          {{- include "jitsi-meet.common.env" . | nindent 12 }}
+            {{- include "jitsi-meet.common.env" . | nindent 12 }}
           volumeMounts:
             - name: jibri-config
               mountPath: /config
@@ -57,9 +57,9 @@ spec:
               mountPath: /dev/snd
       volumes:
         - name: jibri-config
-          emptyDir: { }
+          emptyDir: {}
         - name: jibri-custom-plugins
-          emptyDir: { }
+          emptyDir: {}
         - name: dev-snd
           hostPath:
             path: /dev/snd

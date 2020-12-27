@@ -23,12 +23,12 @@ spec:
         nodeAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
             - preference:
-                - matchExpressions:
-                    - key: audio
-                      operator: In
-                      values:
-                        - enabled
-              weight: 100
+                matchExpressions:
+                  - key: audio
+                    operator: In
+                    values:
+                      - enabled
+              weight: 1
       containers:
         - name: web
           image: jitsi/web:latest
