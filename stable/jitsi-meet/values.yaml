@@ -10,8 +10,8 @@ jitsi:
     DEFAULT_LOCAL_DISPLAY_NAME: me
     SHOW_JITSI_WATERMARK: true
     SHOW_JITSI_WATERMARK_GUEST: true
-    RESOLUTION: "1920"
-    RESOLUTION_WIDTH: "1080"
+    RESOLUTION: "'1920'"
+    RESOLUTION_WIDTH: "'1080'"
   common:
     timezone: "Europe/Berlin"
     public_url: https://jitsi.weidt.dev
