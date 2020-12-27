@@ -20,6 +20,16 @@ spec:
       labels:
         component: prosody
     spec:
+      affinity:
+        nodeAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+            - preference:
+                - matchExpressions:
+                    - key: audio
+                      operator: In
+                      values:
+                        - enabled
+              weight: 100
       containers:
         - name: prosody
           image: jitsi/prosody:latest
@@ -34,7 +44,7 @@ spec:
             - containerPort: 5347
               protocol: TCP
           env:
-            {{- include "jitsi-meet.common.env" . | nindent 12 }}
+          {{- include "jitsi-meet.common.env" . | nindent 12 }}
           volumeMounts:
             - name: prosody-config
               mountPath: /config
