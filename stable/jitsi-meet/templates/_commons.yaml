@@ -101,5 +101,9 @@ Create the name of the service account to use
   value: "8443"
 - name: DISABLE_HTTPS
   value: "true"
+- name: RESOLUTION
+  value: {{ .Values.jitsi.config.RESOLUTION  | default "1920" }}
+- name: RESOLUTION_WIDTH
+  value: {{ .Values.jitsi.config.RESOLUTION_WIDTH  | default "1080" }}
 
   {{- end }}

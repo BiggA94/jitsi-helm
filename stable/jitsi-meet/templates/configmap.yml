@@ -180,7 +180,7 @@ data:
     SHOW_JITSI_WATERMARK: {{ .Values.jitsi.config.SHOW_JITSI_WATERMARK  | default true }},
     SHOW_POWERED_BY: false,
     SHOW_PROMOTIONAL_CLOSE_PAGE: false,
-    SHOW_WATERMARK_FOR_GUESTS: true, // if watermark is disabled by default, it can be shown only for guests
+    SHOW_WATERMARK_FOR_GUESTS: {{ .Values.jitsi.config.SHOW_JITSI_WATERMARK_GUEST  | default true }}, // if watermark is disabled by default, it can be shown only for guests
 
     /*
      * If indicated some of the error dialogs may point to the support URL for
