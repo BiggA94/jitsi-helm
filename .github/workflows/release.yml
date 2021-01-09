@@ -27,16 +27,14 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
+          
+      - name: Fetch history
+        run: git fetch --prune --unshallow
 
       - name: Configure Git
         run: |
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-
-      - name: Install Helm
-        uses: azure/setup-helm@v1
-        with:
-          version: v3.4.0
 
       # Runs a single command using the runners shell
       - name: Helm Chart Releaser
@@ -46,11 +44,6 @@ jobs:
         env:
           CR_TOKEN: "${{ secrets.CR_TOKEN }}"
         with:
-          # The chart-releaser version to use (default: v1.1.1)
-          #version: # optional
-          # The relative path to the chart-releaser config file
-          #config: # optional
-          # The charts directory
-          charts_dir: ./stable # optional, default is charts
+          charts_dir: stable
           # The GitHub Pages URL to the charts repo (default: https://<owner>.github.io/<repo>)
-          #charts_repo_url: # optional
+          charts_repo_url: https://bigga94.github.io/jitsi-helm
