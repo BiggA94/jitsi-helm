@@ -38,6 +38,6 @@ jobs:
           # The relative path to the chart-releaser config file
           #config: # optional
           # The charts directory
-          charts_dir: /stable # optional, default is charts
+          charts_dir: ./stable # optional, default is charts
           # The GitHub Pages URL to the charts repo (default: https://<owner>.github.io/<repo>)
           #charts_repo_url: # optional
