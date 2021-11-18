@@ -3,6 +3,16 @@ entries:
   jitsi-meet:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2021-11-18T17:28:06.660202658Z"
+    description: A Helm chart for Kubernetes
+    digest: 074c9f4a0855f61f236e1894ad8b3e04aee626efa0e4a16bd51d316f3a416019
+    name: jitsi-meet
+    type: application
+    urls:
+    - https://github.com/BiggA94/jitsi-helm/releases/download/jitsi-meet-0.1.25/jitsi-meet-0.1.25.tgz
+    version: 0.1.25
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2021-01-09T19:07:38.701570218Z"
     description: A Helm chart for Kubernetes
     digest: ebf6e4151c2a772a116af0cb9466cdeb13e6e3425819d13e8cd546ab33d694b2
@@ -11,4 +21,4 @@ entries:
     urls:
     - https://github.com/BiggA94/jitsi-helm/releases/download/jitsi-meet-0.1.24/jitsi-meet-0.1.24.tgz
     version: 0.1.24
-generated: "2021-01-09T19:07:38.608587911Z"
+generated: "2021-11-18T17:28:06.660211158Z"
