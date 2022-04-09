@@ -1,10 +1,6 @@
 {{- if .Values.jitsi.ingress.enabled -}}
-  {{- $fullName := include "jitsi-meet.fullname" . -}}
-  {{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
-apiVersion: networking.k8s.io/v1beta1
-  {{- else -}}
-apiVersion: extensions/v1beta1
-  {{- end }}
+{{- $fullName := include "jitsi-meet.fullname" . -}}
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ $fullName }}
@@ -29,8 +25,11 @@ spec:
     - host: {{ .Values.jitsi.ingress.host | quote }}
       http:
         paths:
-          - path: /
+          - pathType: Prefix
+            path: "/"
             backend:
-              serviceName: web
-              servicePort: http
+              service:
+                name: web
+                port:
+                  name: "http"
   {{- end }}
